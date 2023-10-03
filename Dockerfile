@@ -1,3 +1,5 @@
+# --------------------------------- Stage 1
+# installing Python libs
 FROM python:3.9-slim-bullseye@sha256:25a976dc387d01af6cb8c419a03e4b553d88ac5152d250920c94553e24cad3c7 as build
 
 RUN apt-get update \
@@ -15,8 +17,8 @@ ENV PATH="/usr/app/venv/bin:$PATH"
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-#
-# Stage 2
+# --------------------------------- Stage 2
+# Contanirization the app
 FROM python:3.9-slim-bullseye@sha256:25a976dc387d01af6cb8c419a03e4b553d88ac5152d250920c94553e24cad3c7
 
 RUN useradd -r -u 999 -U django \
